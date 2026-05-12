@@ -1439,14 +1439,16 @@
                 showSuccess();
 
             } catch (err) {
-                console.error('Erro EmailJS:', err);
+                console.error('ERRO EMAILJS:', err);
+                alert(JSON.stringify(err));
 
-                msg.textContent = '❌ Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.';
+                msg.textContent = '❌ Erro ao enviar formulário. Tente novamente em alguns instantes.';
                 msg.className = 'form-msg error';
                 msg.style.display = 'block';
 
                 btn.disabled = false;
                 btn.textContent = '👉 Quero falar com um especialista agora';
+
             }
         });
 
