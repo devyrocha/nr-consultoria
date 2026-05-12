@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR Consultoria — CR para Atiradores Esportivos</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --verde: #1a3a2a;
+            --verde-medio: #2d5a3d;
+            --verde-claro: #4a8c5c;
+            --dourado: #c9a84c;
+            --dourado-claro: #e8c97a;
+            --creme: #f5f0e8;
+            --creme-escuro: #ede5d5;
+            --texto: #1a1a14;
+            --texto-muted: #5a5a4a;
+            --branco: #ffffff;
+            --perigo: #8b2020;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--creme);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(26, 58, 42, 0.97);
+            backdrop-filter: blur(8px);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--dourado);
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: var(--branco);
+        }
+
+        .nav-cta {
+            background: var(--dourado);
+            color: var(--verde);
+            border: none;
+            padding: 0.5rem 1.25rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 2px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--dourado-claro);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--verde);
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(74, 140, 92, 0.15) 0%, transparent 60%),
+                repeating-linear-gradient(90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(255, 255, 255, 0.015) 80px,
+                    rgba(255, 255, 255, 0.015) 81px);
+            display: flex;
+            align-items: center;
+            padding: 100px 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(circle at center,
+                    rgba(180, 0, 0, 0.15),
+                    transparent 70%);
+
+            z-index: 1;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.75),
+                    rgba(0, 0, 0, 0.82)),
+                url('src/1.jpg');
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero::before {
+            content: 'NR';
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40vw;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.025);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.5);
+            color: var(--dourado);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.35rem 0.9rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            color: var(--branco);
+            line-height: 1.0;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            color: var(--dourado);
+            font-style: normal;
+        }
+
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .hero-bullets {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .hero-bullets li {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .hero-bullets li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--dourado);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--dourado);
+            color: var(--verde);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 1rem 2rem;
+            border-radius: 2px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background: var(--dourado-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            padding: 2rem;
+        }
+
+        .hero-card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--dourado);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: var(--dourado);
+            line-height: 1;
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .badge-bottom {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .badge-text strong {
+            color: var(--branco);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--verde-claro);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        h2 em {
+            color: var(--verde-claro);
+            font-style: normal;
+        }
+
+        /* PROBLEMA */
+        .problema {
+            background: var(--creme-escuro);
+        }
+
+        .problema-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .problema-text p {
+            color: var(--texto-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .problema-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .problema-card {
+            background: var(--branco);
+            border: 1px solid rgba(139, 32, 32, 0.15);
+            border-left: 3px solid var(--perigo);
+            border-radius: 2px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .problema-card-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .problema-card span {
+            font-size: 0.9rem;
+            color: var(--texto);
+            font-weight: 500;
+        }
+
+        /* SOLUÇÃO */
+        .solucao {
+            background: var(--verde);
+        }
+
+        .solucao h2 {
+            color: var(--branco);
+        }
+
+        .solucao .section-tag {
+            color: var(--dourado);
+        }
+
+        .solucao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .solucao-text p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .solucao-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            padding: 1rem 1.25rem;
+        }
+
+        .feature-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dourado);
+            line-height: 1;
+            flex-shrink: 0;
+            width: 28px;
+        }
+
+        .feature-content h4 {
+            color: var(--branco);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-content p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        /* COMO FUNCIONA */
+        .como {
+            background: var(--creme);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            left: calc(12.5% + 1rem);
+            right: calc(12.5% + 1rem);
+            height: 2px;
+            background: linear-gradient(to right, var(--dourado), rgba(201, 168, 76, 0.2));
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 5rem;
+            height: 5rem;
+            background: var(--verde);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            border: 3px solid var(--creme);
+            outline: 2px solid var(--dourado);
+            position: relative;
+        }
+
+        .step-num span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dourado);
+            line-height: 1;
+        }
+
+        .step h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.82rem;
+            color: var(--texto-muted);
+            line-height: 1.6;
+        }
+
+        /* AUTORIDADE */
+        .autoridade {
+            background: var(--creme-escuro);
+        }
+
+        .autoridade-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .autoridade-text p {
+            color: var(--texto-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            background: var(--verde);
+            color: var(--dourado-claro);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .autoridade-visual {
+            background: var(--verde);
+            border-radius: 4px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .big-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            color: var(--dourado);
+            line-height: 1;
+            display: block;
+        }
+
+        .big-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* DEPOIMENTOS */
+        .depoimentos {
+            background: var(--verde);
+        }
+
+        .depoimentos h2 {
+            color: var(--branco);
+        }
+
+        .depoimentos .section-tag {
+            color: var(--dourado);
+        }
+
+        .depo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .depo {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+
+        .depo-stars {
+            color: var(--dourado);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 2px;
+        }
+
+        .depo-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .depo-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .depo-avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(201, 168, 76, 0.2);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--dourado);
+        }
+
+        .depo-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        .depo-role {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* FORMULÁRIO */
+        .formulario {
+            background: var(--creme);
+        }
+
+        .form-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .form-intro p {
+            color: var(--texto-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-guarantee {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(26, 58, 42, 0.06);
+            border: 1px solid rgba(26, 58, 42, 0.12);
+            border-radius: 3px;
+            padding: 1rem 1.25rem;
+            font-size: 0.85rem;
+            color: var(--texto-muted);
+        }
+
+        .form-guarantee strong {
+            color: var(--verde);
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--texto);
+            letter-spacing: 0.3px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 0.85rem 1rem;
+            border: 1.5px solid rgba(26, 58, 42, 0.2);
+            border-radius: 3px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            background: var(--branco);
+            color: var(--texto);
+            transition: border-color 0.2s;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--verde-claro);
+            box-shadow: 0 0 0 3px rgba(74, 140, 92, 0.12);
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d5a3d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .btn-submit {
+            background: var(--verde);
+            color: var(--dourado);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 1.1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--verde-medio);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(26, 58, 42, 0.2);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-msg {
+            display: none;
+            padding: 0.9rem 1rem;
+            border-radius: 3px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .form-msg.success {
+            background: #e6f4ec;
+            border: 1px solid #7bc99a;
+            color: #1a5c30;
+            display: block;
+        }
+
+        .form-msg.error {
+            background: #fbeaea;
+            border: 1px solid #e8a0a0;
+            color: #7a1a1a;
+            display: block;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--creme-escuro);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .faq-item {
+            background: var(--branco);
+            border: 1px solid rgba(26, 58, 42, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 1.1rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            user-select: none;
+            color: var(--texto);
+        }
+
+        .faq-q:hover {
+            background: rgba(26, 58, 42, 0.03);
+        }
+
+        .faq-icon {
+            color: var(--verde-claro);
+            font-size: 1.2rem;
+            font-weight: 300;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s;
+            font-size: 0.87rem;
+            color: var(--texto-muted);
+            line-height: 1.7;
+            padding: 0 1.25rem;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+            padding: 0 1.25rem 1.1rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: var(--dourado);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-final h2 {
+            color: var(--verde);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-final p {
+            color: rgba(26, 58, 42, 0.75);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-dark {
+            display: inline-block;
+            background: var(--verde);
+            color: var(--dourado-claro);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-dark:hover {
+            background: var(--verde-medio);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--texto);
+            color: rgba(255, 255, 255, 0.45);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.82rem;
+        }
+
+        footer strong {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* WHATSAPP FLOAT */
+        .wa-float {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            z-index: 200;
+            background: #25d366;
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+            transition: all 0.2s;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+        }
+
+        /* DIVIDER */
+        .divider {
+            width: 3rem;
+            height: 3px;
+            background: var(--dourado);
+            margin: 1.5rem 0 2rem;
+        }
+
+        .divider-white {
+            background: rgba(201, 168, 76, 0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero::before {
+                font-size: 60vw;
+                right: -1rem;
+            }
+
+            .problema-grid,
+            .solucao-grid,
+            .autoridade-grid,
+            .form-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .depo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">NR <span>Consultoria</span></div>
+        <a href="#formulario" class="nav-cta">Iniciar Processo</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-tag">Consultoria Especializada em CAC</div>
+                <h1>Tire seu <em>CR de Atirador</em> sem dor de cabeça</h1>
+                <p class="hero-sub">Processo 100% orientado do início ao fim para posse, porte e Certificado de
+                    Registro, com suporte especializado em cada etapa.</p>
+                <ul class="hero-bullets">
+                    <li>Atendimento especializado para CACs</li>
+                    <li>Suporte em toda a documentação</li>
+                    <li>Evite erros que atrasam seu processo</li>
+                    <li>Processo mais rápido e seguro</li>
+                </ul>
+                <a href="#formulario" class="btn-primary">👉 Quero iniciar meu processo agora</a>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-title">Por que nos escolher</div>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <span class="stat-num">100%</span>
+                        <div class="stat-label">Online, todo o Norte e Brasil</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">0</span>
+                        <div class="stat-label">Burocracia desnecessária</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">CR</span>
+                        <div class="stat-label">Posse e Porte</div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">CAC</span>
+                        <div class="stat-label">Foco total</div>
+                    </div>
+                </div>
+                <div class="badge-bottom">
+                    <div class="badge-icon">🛡️</div>
+                    <div class="badge-text"><strong>Suporte via WhatsApp</strong> acompanhamento direto em cada etapa do
+                        seu processo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="problema">
+        <div class="container">
+            <div class="problema-grid">
+                <div class="problema-text">
+                    <div class="section-tag">O problema</div>
+                    <h2>Você pode estar perdendo <em>tempo e dinheiro</em> no seu processo</h2>
+                    <div class="divider"></div>
+                    <p>Muitas pessoas têm o processo de CR, posse ou porte travado por erros simples na documentação,
+                        falta de orientação ou informações incorretas.</p>
+                    <p>Isso gera atrasos desnecessários, custos extras e muita frustração — problemas que poderiam ser
+                        evitados com a orientação certa desde o início.</p>
+                    <a href="#formulario" class="btn-primary" style="font-size:0.9rem; padding:0.85rem 1.75rem;">Quero
+                        evitar esses erros →</a>
+                </div>
+                <div class="problema-cards">
+                    <div class="problema-card">
+                        <div class="problema-card-icon">❌</div>
+                        <span>Indeferimento do processo por documentação incorreta</span>
+                    </div>
+                    <div class="problema-card">
+                        <div class="problema-card-icon">⏳</div>
+                        <span>Atrasos de meses por falta de orientação</span>
+                    </div>
+                    <div class="problema-card">
+                        <div class="problema-card-icon">💸</div>
+                        <span>Retrabalho e custos extras desnecessários</span>
+                    </div>
+                    <div class="problema-card">
+                        <div class="problema-card-icon">😤</div>
+                        <span>Frustração e insegurança em cada etapa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUÇÃO -->
+    <section class="solucao">
+        <div class="container">
+            <div class="solucao-grid">
+                <div class="solucao-text">
+                    <div class="section-tag">A solução</div>
+                    <h2 style="color:#fff;">A NR Consultoria cuida de <em style="color:var(--dourado);">todo o seu
+                            processo</em> por você</h2>
+                    <div class="divider divider-white"></div>
+                    <p>Nós acompanhamos você do início ao fim, garantindo que cada etapa seja feita corretamente,
+                        reduzindo erros e aumentando suas chances de aprovação.</p>
+                    <a href="#formulario" class="btn-primary">Quero o acompanhamento completo →</a>
+                </div>
+                <div class="solucao-features">
+                    <div class="feature">
+                        <div class="feature-num">01</div>
+                        <div class="feature-content">
+                            <h4>Análise completa do seu caso</h4>
+                            <p>Entendemos sua situação e mapeamos o processo ideal para você.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-num">02</div>
+                        <div class="feature-content">
+                            <h4>Orientação documental passo a passo</h4>
+                            <p>Você sabe exatamente o que precisa, sem surpresas ou dúvidas.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-num">03</div>
+                        <div class="feature-content">
+                            <h4>Suporte direto via WhatsApp</h4>
+                            <p>Tiramos dúvidas em tempo real durante todo o processo.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-num">04</div>
+                        <div class="feature-content">
+                            <h4>Processo mais rápido e organizado</h4>
+                            <p>Com a orientação certa, você evita retrabalho e atrasos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="como">
+        <div class="container">
+            <div style="text-align:center;">
+                <div class="section-tag">Como funciona</div>
+                <h2>4 passos para o seu <em>CR aprovado</em></h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num"><span>1</span></div>
+                    <h3>Preencha o formulário</h3>
+                    <p>Nos diga sobre seu caso de forma rápida e simples</p>
+                </div>
+                <div class="step">
+                    <div class="step-num"><span>2</span></div>
+                    <h3>Entramos em contato</h3>
+                    <p>Nossa equipe retorna no menor tempo possível</p>
+                </div>
+                <div class="step">
+                    <div class="step-num"><span>3</span></div>
+                    <h3>Análise do caso</h3>
+                    <p>Avaliamos sua situação e definimos o melhor caminho</p>
+                </div>
+                <div class="step">
+                    <div class="step-num"><span>4</span></div>
+                    <h3>Acompanhamento total</h3>
+                    <p>Orientamos cada etapa até a conclusão do processo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTORIDADE -->
+    <section class="autoridade">
+        <div class="container">
+            <div class="autoridade-grid">
+                <div class="autoridade-text">
+                    <div class="section-tag">Especialização</div>
+                    <h2>Especialistas em processos de <em>CAC</em></h2>
+                    <div class="divider"></div>
+                    <p>A NR Consultoria atua com foco em processos de posse, porte e CR para atiradores esportivos,
+                        caçadores e colecionadores.</p>
+                    <p>Nosso objetivo é garantir que você tenha clareza e segurança em todas as etapas, com uma equipe
+                        que conhece cada detalhe da regulamentação.</p>
+                    <div class="expertise-tags">
+                        <span class="tag">Certificado de Registro</span>
+                        <span class="tag">Posse</span>
+                        <span class="tag">Porte</span>
+                        <span class="tag">Atiradores</span>
+                        <span class="tag">Caçadores</span>
+                        <span class="tag">Colecionadores</span>
+                    </div>
+                </div>
+                <div class="autoridade-visual">
+                    <span class="big-num">CAC</span>
+                    <p class="big-label" style="color:rgba(255,255,255,0.6); margin-top:0.5rem; font-size:0.85rem;">
+                        Colecionador · Atirador · Caçador</p>
+                    <div style="margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1);">
+                        <p
+                            style="color:rgba(255,255,255,0.5); font-size:0.8rem; margin-bottom:1.25rem; letter-spacing:1px; text-transform:uppercase;">
+                            Atendimento nacional</p>
+                        <p style="color:rgba(255,255,255,0.85); font-size:0.9rem; line-height:1.7;">Atendemos em todo o
+                            Brasil de forma 100% online, com o mesmo nível de qualidade e atenção para cada cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="depoimentos">
+        <div class="container">
+            <div class="section-tag">Depoimentos</div>
+            <h2 style="color:#fff;">O que nossos clientes dizem</h2>
+            <div class="depo-grid">
+                <div class="depo">
+                    <div class="depo-stars">★★★★★</div>
+                    <p class="depo-text">"Processo que eu imaginava que levaria meses foi concluído de forma muito mais
+                        rápida. O suporte via WhatsApp foi essencial, sempre com resposta rápida e objetiva."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">MS</div>
+                        <div>
+                            <div class="depo-name">Marcos S.</div>
+                            <div class="depo-role">Atirador Esportivo — Manaus/AM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="depo">
+                    <div class="depo-stars">★★★★★</div>
+                    <p class="depo-text">"Estava perdido com a documentação e a NR me orientou em cada passo. Sem eles
+                        eu teria cometido erros que atrasariam tudo. Recomendo demais."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">RF</div>
+                        <div>
+                            <div class="depo-name">Ricardo F.</div>
+                            <div class="depo-role">Atirador e Posse — Coari/AM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="depo">
+                    <div class="depo-stars">★★★★★</div>
+                    <p class="depo-text">"Atendimento transparente, sem enrolação. Me disseram exatamente o que eu
+                        precisava e o processo correu sem problemas. Profissionais de verdade."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">AP</div>
+                        <div>
+                            <div class="depo-name">André P.</div>
+                            <div class="depo-role">Atirador e Porte — Manacapuru/AM </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO -->
+    <section class="formulario" id="formulario">
+        <div class="container">
+
+            <!-- TELA DE SUCESSO (oculta por padrão) -->
+            <div id="successScreen" style="display:none; text-align:center; padding: 3rem 1rem;">
+                <div
+                    style="width:80px; height:80px; background:var(--verde); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 2rem; font-size:2.2rem;">
+                    ✅</div>
+                <div class="section-tag">Recebemos sua solicitação</div>
+                <h2 style="margin-bottom:1rem;">Mensagem enviada <em>com sucesso!</em></h2>
+                <p
+                    style="color:var(--texto-muted); max-width:480px; margin:0 auto 2rem; line-height:1.8; font-size:1rem;">
+                    Nossa equipe já recebeu seus dados e vai entrar em contato pelo WhatsApp em breve.<br>
+                    Fique atento às mensagens!
+                </p>
+                <div
+                    style="display:inline-flex; flex-direction:column; gap:0.75rem; align-items:center; background:rgba(26,58,42,0.06); border:1px solid rgba(26,58,42,0.12); border-radius:4px; padding:1.5rem 2.5rem; margin-bottom:2rem;">
+                    <span
+                        style="font-size:0.8rem; color:var(--texto-muted); letter-spacing:1px; text-transform:uppercase; font-weight:600;">Próximo
+                        passo</span>
+                    <span style="font-size:0.95rem; color:var(--texto); font-weight:500;">Aguarde o contato da equipe NR
+                        pelo WhatsApp</span>
+                </div>
+                <br>
+                <a href="#" onclick="location.reload()"
+                    style="font-size:0.85rem; color:var(--verde-claro); text-decoration:underline;">Voltar ao início</a>
+            </div>
+
+            <!-- FORMULÁRIO (visível por padrão) -->
+            <div id="formSection" class="form-wrapper">
+                <div class="form-intro">
+                    <div class="section-tag">Início do processo</div>
+                    <h2>Comece com acompanhamento <em>profissional</em></h2>
+                    <div class="divider"></div>
+                    <p>Preencha seus dados e nossa equipe vai entrar em contato para te orientar. Evite erros,
+                        retrabalho e atrasos desde o primeiro passo.</p>
+                    <div class="form-guarantee">
+                        <div style="font-size:1.5rem;">🔒</div>
+                        <div>
+                            <strong>Seus dados estão seguros</strong>
+                            Não compartilhamos suas informações com terceiros. Contato apenas da nossa equipe.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nome">Nome completo *</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp *</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 90000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo de processo *</label>
+                            <select id="tipo" name="tipo" required>
+                                <option value="" disabled selected>Selecione o tipo</option>
+                                <option value="CR - Certificado de Registro">CR — Certificado de Registro (CAC)</option>
+                                <option value="Posse de arma de fogo">Posse de arma de fogo</option>
+                                <option value="Porte de arma de fogo">Porte de arma de fogo</option>
+                                <option value="Não sei ainda">Não sei ainda / Quero orientação</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Conte um pouco sobre sua situação (opcional)</label>
+                            <textarea id="mensagem" name="mensagem"
+                                placeholder="Já tem alguma documentação? Está começando do zero? Tem alguma dúvida específica?"></textarea>
+                        </div>
+                        <div class="form-msg" id="formMsg"></div>
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            👉 Quero falar com um especialista agora
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <div style="max-width:700px;">
+                <div class="section-tag">Perguntas frequentes</div>
+                <h2>Tire suas <em>dúvidas</em></h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-q">Quanto tempo leva o processo? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">O prazo varia de acordo com o tipo de solicitação e a análise documental. Com a
+                        orientação correta desde o início, o processo tende a ser mais ágil e sem retrabalho.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Vocês garantem a aprovação? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">Não garantimos aprovação, pois a decisão final é do órgão competente. O que
+                        garantimos é redução de erros e aumento da eficiência do processo com orientação especializada.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Atendem todo o Brasil? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">Sim! O atendimento é 100% online, atendemos em todos os estados do Brasil com o
+                        mesmo nível de qualidade e atenção.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Preciso já ter algo iniciado? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">Não. Podemos te orientar desde o zero, desde a primeira etapa até a conclusão do
+                        processo. Quanto antes você começar, melhor.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">O suporte é apenas por formulário? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">Não. Após o primeiro contato, o acompanhamento é feito via WhatsApp de forma
+                        direta com nossa equipe especializada.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Qual é o custo da consultoria? <span class="faq-icon">+</span></div>
+                    <div class="faq-a">O valor é apresentado após a análise do seu caso, pois depende do tipo de
+                        processo e da sua situação específica. Preencha o formulário para uma avaliação gratuita.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Pronto para começar seu processo?</h2>
+            <p>Evite erros, retrabalho e atrasos. Tenha suporte completo desde o início.</p>
+            <a href="#formulario" class="btn-dark">👉 Quero falar com um especialista agora</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <strong>NR Consultoria</strong> — Especialistas em processos CAC - Todos os direitos reservados<br>
+        <span style="margin-top:0.5rem; display:block;">Atendimento 100% online · Todo o Norte e Brasil</span>
+
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="#formulario" class="wa-float" target="_blank" title="Falar no WhatsApp"
+        aria-label="Falar no WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // ── EmailJS ──
+        // Para ativar o envio de email, siga os 3 passos:
+        // 1. Crie conta grátis em https://www.emailjs.com
+        // 2. Crie um serviço de email e anote o SERVICE ID
+        // 3. Crie um template com as variáveis: {{nome}}, {{whatsapp}}, {{email}}, {{tipo}}, {{mensagem}}
+        //    e substitua as 3 constantes abaixo pelos seus IDs reais
+
+        const EMAILJS_PUBLIC_KEY = 'jwBBXsCl26-Wdw42R';
+        const EMAILJS_SERVICE_ID = 'service_aframtj';
+        const EMAILJS_TEMPLATE_ID = 'template_9rvp3n1';
+
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+        function showSuccess() {
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('successScreen').style.display = 'block';
+            document.getElementById('formulario').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('formMsg');
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+            msg.className = 'form-msg';
+            msg.style.display = 'none';
+
+            const params = {
+                to_email: 'yrochadn@gmail.com',
+                nome: document.getElementById('nome').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                email: document.getElementById('email').value || 'Não informado',
+                tipo: document.getElementById('tipo').value,
+                mensagem: document.getElementById('mensagem').value || 'Não informado',
+            };
+
+            try {
+                if (EMAILJS_PUBLIC_KEY === 'jwBBXsCl26-Wdw42R') {
+                    await new Promise(r => setTimeout(r, 1000));
+                    console.log('📋 Dados do formulário (configure o EmailJS para enviar):', params);
+                    showSuccess();
+                } else {
+                    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+                    showSuccess();
+                }
+            } catch (err) {
+                console.error('Erro EmailJS:', err);
+                msg.textContent = '❌ Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.';
+                msg.className = 'form-msg error';
+                btn.disabled = false;
+                btn.textContent = '👉 Quero falar com um especialista agora';
+            }
+        });
+
+        // ── FAQ toggle ──
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // ── WhatsApp mask ──
+        document.getElementById('whatsapp').addEventListener('input', function () {
+            let v = this.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 6) v = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+            else if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+            else if (v.length > 0) v = `(${v}`;
+            this.value = v;
+        });
+    </script>
+</body>
+
+</html>
