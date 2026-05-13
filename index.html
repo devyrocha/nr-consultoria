@@ -29,15 +29,247 @@
             box-sizing: border-box;
         }
 
+        /* MOBILE EXTRA */
+        @media (max-width: 480px) {
+
+            nav {
+                padding: 0 1rem;
+                height: 58px;
+            }
+
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-cta {
+                padding: 0.45rem 0.9rem;
+                font-size: 0.72rem;
+            }
+
+            .hero {
+                padding: 90px 1rem 3rem;
+                min-height: auto;
+            }
+
+            .hero-inner {
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+                line-height: 0.95;
+            }
+
+            .hero-sub {
+                font-size: 0.92rem;
+                line-height: 1.6;
+            }
+
+            .hero-bullets li {
+                font-size: 0.82rem;
+                align-items: flex-start;
+            }
+
+            .btn-primary,
+            .btn-dark,
+            .btn-submit {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-card {
+                padding: 1.25rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+
+            .stat {
+                padding: 1rem 0.6rem;
+            }
+
+            .stat-num {
+                font-size: 1.7rem;
+            }
+
+            section {
+                padding: 3.5rem 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step p {
+                max-width: 260px;
+                margin: 0 auto;
+            }
+
+            .depo {
+                padding: 1.2rem;
+            }
+
+            .faq-q {
+                font-size: 0.84rem;
+                padding: 1rem;
+            }
+
+            .faq-a {
+                font-size: 0.82rem;
+            }
+
+            .form-guarantee {
+                align-items: flex-start;
+            }
+
+            input,
+            select,
+            textarea {
+                font-size: 16px;
+            }
+
+            .social-proof {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                max-width: unset;
+                width: auto;
+                padding: 12px;
+            }
+
+            .social-proof-text {
+                font-size: 0.76rem;
+            }
+
+            .wa-float {
+                width: 54px;
+                height: 54px;
+                right: 1rem;
+                bottom: 1rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* POPUP SOCIAL PROOF */
+        .social-proof {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 9999;
+
+            background: rgba(26, 58, 42, 0.96);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+
+            color: white;
+            padding: 14px 18px;
+
+            border-radius: 6px;
+            max-width: 320px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+            opacity: 0;
+            transform: translateY(20px);
+
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .social-proof.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-proof-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .social-proof-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .social-proof-text strong {
+            color: var(--dourado);
+        }
+
         html {
             scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: clip;
         }
 
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--creme);
             color: var(--texto);
-            overflow-x: hidden;
+        }
+
+        /* FIX MOBILE FLOATS */
+
+        .social-proof {
+            z-index: 999999 !important;
+        }
+
+        .wa-float {
+            z-index: 999999 !important;
+        }
+
+        @media (max-width: 768px) {
+
+            .social-proof {
+                left: 12px;
+                right: 12px;
+                bottom: 85px;
+                max-width: unset;
+                width: auto;
+
+                transform: translateY(20px);
+
+                font-size: 0.75rem;
+            }
+
+            .social-proof.show {
+                transform: translateY(0);
+            }
+
+            .wa-float {
+                right: 14px;
+                bottom: 14px;
+
+                width: 56px;
+                height: 56px;
+            }
         }
 
         /* NAV */
@@ -994,6 +1226,12 @@
         <a href="#formulario" class="nav-cta">Iniciar Processo</a>
     </nav>
 
+    <!-- POPUP SOCIAL PROOF -->
+    <div class="social-proof" id="socialProof">
+        <div class="social-proof-icon">🛡️</div>
+        <div class="social-proof-text" id="socialProofText"></div>
+    </div>
+
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
@@ -1392,6 +1630,48 @@
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
+
+        // ── SOCIAL PROOF POPUP ──
+
+        const proofMessages = [
+            'Carlos M***** acabou de solicitar o CR',
+            'Ricardo S****  iniciou o processo de posse',
+            'Marcos A***** enviou o formulário agora',
+            'João G***** começou o processo CAC',
+            'Felipe A******** solicitou atendimento especializado',
+            'André G***** iniciou o processo de porte',
+            'Lucas S****** enviou seus dados para análise',
+            'Rafael F***** começou o processo de regularização',
+            'Bruno T***** acabou de solicitar orientação',
+            'Thiago L**** iniciou atendimento com a NR'
+        ];
+
+        const socialProof = document.getElementById('socialProof');
+        const socialProofText = document.getElementById('socialProofText');
+
+        function showSocialProof() {
+
+            const randomMessage =
+                proofMessages[Math.floor(Math.random() * proofMessages.length)];
+
+            socialProofText.innerHTML =
+                `<strong>${randomMessage}</strong><br>
+        <span style="font-size:0.75rem; opacity:0.7;">
+        há poucos minutos
+        </span>`;
+
+            socialProof.classList.add('show');
+
+            setTimeout(() => {
+                socialProof.classList.remove('show');
+            }, 4000);
+        }
+
+        // primeiro popup depois de 3s
+        setTimeout(showSocialProof, 3000);
+
+        // loop a cada 5s
+        setInterval(showSocialProof, 5000);
         // ── EmailJS ──
         // Para ativar o envio de email, siga os 3 passos:
         // 1. Crie conta grátis em https://www.emailjs.com
